@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.display {
+    width: 400px;
+    height: 150px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+#num-field {
+    width: 400px;
+    height: 100px;
+    /* background-color: pink; */
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+}
+
+.btn-wide {
+    width: 200px;
+}
+
+.btn-short {
+    width: 100px;
+}
+
+.btn-wide, 
+.btn-short {
+    height: 90px;
+    border: none;
+    border-radius: 10px;
+}
