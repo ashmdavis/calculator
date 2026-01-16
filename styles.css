@@ -23,6 +23,8 @@ body {
     height: 150px;
     border: 1px solid black;
     border-radius: 10px;
+    font-size: 2rem;
+    text-align: right;
 }
 
 #num-field {
