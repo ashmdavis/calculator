@@ -1,7 +1,10 @@
-const currentDisplay = document.querySelector(".current-operand");
+const currentDisplay = document.querySelector(".current-display");
+const expressionDisplay = document.querySelector(".expression-display");
+
 let currentInput = "";
 let operator = null;
 let firstNumber = null;
+let expression = "";
 
 // handle numbers
 document.querySelectorAll("[data-number]").forEach(button => {
@@ -22,6 +25,8 @@ document.querySelectorAll("[data-operator]").forEach(button => {
             firstNumber = parseFloat(currentInput);
         }
         operator = button.dataset.operator;
+        expression = `${firstNumber}${operator}`;
+        expressionDisplay.textContent = expression;
         currentInput = "";
     });
 });
@@ -36,10 +41,7 @@ document.querySelector("#back").addEventListener("click", () => {
 
 // clear button
 document.querySelector("#clear").addEventListener("click", () => {
-    currentInput = "";
-    firstNumber = null;
-    operator = null;
-    currentDisplay.textContent = "";
+    resetCalculator();
 });
 
 // equals button
@@ -65,13 +67,16 @@ function calculate() {
             break;
         case "÷":
             if (secondNumber === 0) {
-                alert("Cannot divide by zero");
-                resetCalculator();
+                currentDisplay.textContent = "Can't divide by 0";
+                setTimeout(() => {
+                    resetCalculator();
+                }, 2000);
                 return;
             }
             result = divide(firstNumber, secondNumber);
             break;
     }
+    expressionDisplay.textContent = `${firstNumber}${operator}${secondNumber}`;
     currentDisplay.textContent = result;
     firstNumber = result;
     currentInput = "";
@@ -82,7 +87,9 @@ function resetCalculator() {
     currentInput = "";
     firstNumber = null;
     operator = null;
+    expression = "";
     currentDisplay.textContent = "";
+    expressionDisplay.textContent = "";
 }
 
 function add(firstNumber, secondNumber) {
