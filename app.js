@@ -7,7 +7,7 @@ let firstNumber = null;
 let expression = "";
 let resultsDisplayed = false;
 
-// mouse-click event listeners
+// Mouse-click event listeners
 document.querySelectorAll("[data-number]").forEach(button => {
     button.addEventListener("click", () => handleNumbers(button.dataset.number));
 });
@@ -20,7 +20,7 @@ document.querySelector("#back").addEventListener("click", handleBackSpace);
 document.querySelector("#clear").addEventListener("click", handleClear);
 document.querySelector("#equals").addEventListener("click", handleEquals);
 
-// keyboard event listeners
+// Keyboard event listeners
 document.addEventListener("keydown", (e) => {
     const key = e.key;
 
@@ -31,8 +31,6 @@ document.addEventListener("keydown", (e) => {
     else if (key === "Escape") handleClear();
 });
 
-
-// handle numbers
 function handleNumbers(number) {
     if (resultsDisplayed) {
         currentInput = "";
@@ -44,10 +42,7 @@ function handleNumbers(number) {
     updateDisplay();
 }
 
-// handle operators
 function handleOperators(updatedOperator) {
-    // const updatedOperator = button.dataset.operator;
-
     // do nothing if no number have been selected
     if (currentInput === "" && firstNumber === null) return;
 
@@ -74,7 +69,6 @@ function handleOperators(updatedOperator) {
     currentInput = "";
 }
 
-// back button
 function handleBackSpace() {
     if (currentInput.length > 0) {
         currentInput = currentInput.slice(0, -1);
@@ -82,19 +76,16 @@ function handleBackSpace() {
     }
 }
 
-// clear button
 function handleClear() {
     resetCalculator();
 }
 
-// equals button
 function handleEquals() {
     if (firstNumber === null || currentInput === "" || operator === null) return;
     calculate();
     resultsDisplayed = true;
 }
 
-// calculate
 function calculate() {
     const secondNumber = parseFloat(currentInput);
     let result = 0;
