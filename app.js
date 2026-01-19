@@ -26,6 +26,14 @@ document.querySelectorAll("[data-operator]").forEach(button => {
     });
 });
 
+// back button
+document.querySelector("#back").addEventListener("click", () => {
+    if (currentInput.length > 0) {
+        currentInput = currentInput.slice(0, -1);
+        currentDisplay.textContent = currentInput;
+    }
+});
+
 // clear button
 document.querySelector("#clear").addEventListener("click", () => {
     currentInput = "";
