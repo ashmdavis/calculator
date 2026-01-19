@@ -1,72 +1,98 @@
-const num1 = "";
-const num2 = "";
-const operator = "";
+const currentDisplay = document.querySelector(".current-operand");
+let currentInput = "";
+let operator = null;
+let firstNumber = null;
 
-const display = document.querySelector(".display");
-
-
-function add(num1, num2) {
-    console.log(num1 + num2);
-}
-
-function subtract(num1, num2) {
-    console.log(num1 - num2);
-}
-
-function multiply(num1, num2) {
-    console.log(num1 * num2);
-}
-
-function divide(num1, num2) {
-    console.log(num1 / num2);
-}
-
-function operate(num1, num2, operator) {
-    if (operator === "+") {
-        add(num1, num2);
-    } else if (operator === "-") {
-        subtract(num1, num2);
-    } else if (operator === "*") {
-        multiply(num1, num2);
-    } else if (operator === "/") {
-        divide(num1, num2);
-    }
-}
-
-// operate(2, 2, "*");
-
-function logicButton() {
-    const buttons = document.querySelectorAll(".button");
-    buttons.forEach((button) => {
-        button.addEventListener("click", (event) => {
-            let target = event.target;
-            let keyValue = target.textContent;
-            if (target.classList.contains("btn-clear")) {
-                clearDisplay();
-            } else if (target.classList.contains("btn-back")) {
-                display.value = display.value.slice(0, -1);
-                // button opperators and decimal can only be displayed once
-            } else if (target.classList.contains("btn-operator") || target.classList.contains("btn-decimal")) {
-                if (display.value != "" && !display.value.includes(keyValue)) {
-                    appendToDisplay(keyValue);
-
-                }
-            }
-            else {
-                appendToDisplay(keyValue);
-            }
-        });
+// handle numbers
+document.querySelectorAll("[data-number]").forEach(button => {
+    button.addEventListener("click", () => {
+        if (button.dataset.number === "." && currentInput.includes(".")) return;
+        currentInput += button.dataset.number;
+        currentDisplay.textContent = currentInput;
     });
+});
+
+// handle operators
+document.querySelectorAll("[data-operator]").forEach(button => {
+    button.addEventListener("click", () => {
+        if (currentInput === "") return;
+        if (firstNumber !== null && operator !== null) {
+            calculate();
+        } else {
+            firstNumber = parseFloat(currentInput);
+        }
+        operator = button.dataset.operator;
+        currentInput = "";
+    });
+});
+
+// clear button
+document.querySelector("#clear").addEventListener("click", () => {
+    currentInput = "";
+    firstNumber = null;
+    operator = null;
+    currentDisplay.textContent = "";
+});
+
+// equals button
+document.querySelector("#equals").addEventListener("click", () => {
+    if (firstNumber === null || currentInput === "" || operator === null) return;
+    calculate();
+});
+
+// calculate
+function calculate() {
+    const secondNumber = parseFloat(currentInput);
+    let result = 0;
+
+    switch (operator) {
+        case "+":
+            result = add(firstNumber, secondNumber);
+            break;
+        case "-":
+            result = subtract(firstNumber, secondNumber);
+            break;
+        case "*":
+            result = multiply(firstNumber, secondNumber);
+            break;
+        case "÷":
+            if (secondNumber === 0) {
+                alert("Cannot divide by zero");
+                resetCalculator();
+                return;
+            }
+            result = divide(firstNumber, secondNumber);
+            break;
+    }
+    currentDisplay.textContent = result;
+    firstNumber = result;
+    currentInput = "";
+    operator = null;
 }
-logicButton();
 
-function appendToDisplay(input) {
-    display.value += input;
+function resetCalculator() {
+    currentInput = "";
+    firstNumber = null;
+    operator = null;
+    currentDisplay.textContent = "";
 }
 
-function clearDisplay() {
-    display.value = "";
+function add(firstNumber, secondNumber) {
+    result = firstNumber + secondNumber;
+    return result;
 }
 
+function subtract(firstNumber, secondNumber) {
+    result = firstNumber - secondNumber;
+    return result;
+}
 
+function multiply(firstNumber, secondNumber) {
+    result = firstNumber * secondNumber;
+    return result;
+}
 
+function divide(firstNumber, secondNumber) {
+    result = firstNumber / secondNumber;
+    return result;
+}

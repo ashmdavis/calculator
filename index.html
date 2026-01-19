@@ -10,26 +10,32 @@
 
 <body>
     <div class="main-container">
-        <input type="text" id="display" class="display" readonly>
-        <div class="button-container">
-            <button class="button btn-wide btn-clear">C</button>
-            <button class="button btn-short btn-back">B</button>
-            <button class="button btn-short btn-operator">/</button>
-            <button class="button btn-short key">7</button>
-            <button class="button btn-short key">8</button>
-            <button class="button btn-short key">9</button>
-            <button class="button btn-short btn-operator">*</button>
-            <button class="button btn-short key">4</button>
-            <button class="button btn-short key">5</button>
-            <button class="button btn-short key">6</button>
-            <button class="button btn-short btn-operator">-</button>
-            <button class="button btn-short key">1</button>
-            <button class="button btn-short key">2</button>
-            <button class="button btn-short key">3</button>
-            <button class="button btn-short btn-operator">+</button>
-            <button class="button btn-short key">0</button>
-            <button class="button btn-short btn-decimal">.</button>
-            <button class="button btn-wide btn-equals">=</button>
+        <div class="calculator">
+            <div class="display">
+                <div class="previous-operand" value=""></div>
+                <!-- <input type="text" class="current-operand" disabled> -->
+                <div class="current-operand" value=""></div>
+            </div>
+            <div class="button-container">
+                <button class="clear action btn-wide" id="clear">AC</button>
+                <button class="back action" id="back">←</button>
+                <button class="operator" data-operator="÷">÷</button>
+                <button data-number="7">7</button>
+                <button data-number="8">8</button>
+                <button data-number="9">9</button>
+                <button class="operator" data-operator="*">*</button>
+                <button data-number="4">4</button>
+                <button data-number="5">5</button>
+                <button data-number="6">6</button>
+                <button class="operator" data-operator="-">-</button>
+                <button data-number="1">1</button>
+                <button data-number="2">2</button>
+                <button data-number="3">3</button>
+                <button class="operator" data-operator="+">+</button>
+                <button data-number="0">0</button>
+                <button data-number=".">.</button>
+                <button class="equal action btn-wide" id="equals">=</button>
+            </div>
         </div>
 
     </div>
