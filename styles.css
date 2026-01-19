@@ -44,8 +44,8 @@ body {
     color: white;
 }
 
-.display .previous-operand {
-    font-size: 1.5rem;
+.display .expression-display {
+    font-size: 2.5rem;
 
 }
 
