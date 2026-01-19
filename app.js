@@ -29,6 +29,7 @@ document.addEventListener("keydown", (e) => {
     else if (key === ".") handleNumbers(".");
     else if (key === "Enter" || key === "=") handleEquals();
     else if (key === "Escape") handleClear();
+    else if (key === "Backspace") handleBackSpace();
 });
 
 function handleNumbers(number) {
